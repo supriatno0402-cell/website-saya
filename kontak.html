@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontak</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <h2>Website Saya</h2>
+  <div class="menu">
+    <a href="index.html">Home</a>
+    <a href="profil.html">Profil</a>
+    <a href="kontak.html">Kontak</a>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="contact-container">
+  <h1>Kontak Saya</h1>
+
+<form onsubmit="kirimWA(); return false;">
+  <input type="text" id="nama" placeholder="Nama" required>
+  <input type="email" id="email" placeholder="Email" required>
+  <textarea id="pesan" placeholder="Pesan" rows="5" required></textarea>
+  <button type="submit">Kirim ke WhatsApp</button>
+</form>
+</div>
+
+<script>
+function kirimWA() {
+  var nama = document.getElementById("nama").value;
+  var email = document.getElementById("email").value;
+  var pesan = document.getElementById("pesan").value;
+
+  var nomor = "6287742995239"; // ganti dengan nomor kamu
+
+  var text = "Halo, saya " + nama + "%0AEmail: " + email + "%0APesan: " + pesan;
+
+  var url = "https://wa.me/" + nomor + "?text=" + text;
+
+  window.open(url, "_blank");
+}
+</script>
+
+<footer>
+  <p>© 2026 Supriatno</p>
+
+  <div class="social">
+    <a href="https://wa.me/6287742995239">WhatsApp</a>
+    <a href="https://facebook.com/supriatno">Facebook</a>
+    <a href="https://instagram.com/supriatno.14">Instagram</a>
+  </div>
+</footer>
+</body>
+</html>
