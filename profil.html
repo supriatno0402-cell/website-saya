@@ -16,6 +16,7 @@
 <div class="navbar">
   <h2>Website Saya</h2>
   <div class="menu">
+<button onclick="toggleDark()" id="darkIcon">🌙</button>
     <a href="index.html">Home</a>
     <a href="profil.html">Profil</a>
     <a href="kontak.html">Kontak</a>
@@ -76,7 +77,28 @@
 <div class="container">
 
   <!-- PENDIDIKAN -->
-  <div class="card">
+  <div class="card hidden">
+  <h1 style="text-align:center; color:white;">Skill Saya</h1>
+
+<div class="skills">
+
+  <p>HTML</p>
+  <div class="bar">
+    <div class="progress html">70%</div>
+  </div>
+
+  <p>CSS</p>
+  <div class="bar">
+    <div class="progress css">60%</div>
+  </div>
+
+  <p>JavaScript</p>
+  <div class="bar">
+    <div class="progress js">30%</div>
+  </div>
+
+</div>  
+    
     <img src="foto-saya.jpg">
     <div class="text">
       <h2>Supriatno</h2>
@@ -90,7 +112,7 @@
   </div>
 
   <!-- PEKERJAAN -->
-  <div class="card">
+  <div class="card hidden">
     <img src="img2.png">
     <div class="text">
       <h2>Supriatno</h2>
@@ -104,7 +126,7 @@
   </div>
 
   <!-- HOBI -->
-  <div class="card">
+  <div class="card hidden">
     <img src="1.png">
     <div class="text">
       <h2>Supriatno</h2>
@@ -132,6 +154,69 @@
   </div>
   
 </footer>
+<script>
+const elements = document.querySelectorAll(".hidden");
+
+function showOnScroll() {
+  elements.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (top < windowHeight - 50) {
+      el.classList.add("show");
+    }
+  });
+}
+
+window.addEventListener("scroll", showOnScroll);
+</script>
+
+<script>
+function toggleDark() {
+  document.body.classList.toggle("dark");
+
+  // simpan ke localStorage
+  if (document.body.classList.contains("dark")) {
+    localStorage.setItem("mode", "dark");
+  } else {
+    localStorage.setItem("mode", "light");
+  }
+}
+
+// cek saat pertama dibuka
+if (localStorage.getItem("mode") === "dark") {
+  document.body.classList.add("dark");
+}
+</script>
+
+<script>
+function toggleDark() {
+  document.body.classList.toggle("dark");
+
+  let icon = document.getElementById("darkIcon");
+
+  if (document.body.classList.contains("dark")) {
+    localStorage.setItem("mode", "dark");
+    icon.innerHTML = "☀️";
+  } else {
+    localStorage.setItem("mode", "light");
+    icon.innerHTML = "🌙";
+  }
+}
+
+if (localStorage.getItem("mode") === "dark") {
+  document.body.classList.add("dark");
+  document.getElementById("darkIcon").innerHTML = "☀️";
+}
+</script>
+
+<script>
+window.onload = function() {
+  document.querySelector(".html").style.width = "80%";
+  document.querySelector(".css").style.width = "70%";
+  document.querySelector(".js").style.width = "50%";
+}
+</script>
 
 </body>
 </html>

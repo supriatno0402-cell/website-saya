@@ -14,7 +14,7 @@
 <div class="navbar">
   <h2>Website Saya</h2>
   <div class="menu">
-    
+<button onclick="toggleDark()" id="darkIcon">🌙</button>
     <a href="index.html">Home</a>
     <a href="profil.html">Profil</a>
     <a href="kontak.html">Kontak</a>
@@ -43,5 +43,44 @@
   </div>
   
 </footer>
+
+<script>
+function toggleDark() {
+  document.body.classList.toggle("dark");
+
+  // simpan ke localStorage
+  if (document.body.classList.contains("dark")) {
+    localStorage.setItem("mode", "dark");
+  } else {
+    localStorage.setItem("mode", "light");
+  }
+}
+
+// cek saat pertama dibuka
+if (localStorage.getItem("mode") === "dark") {
+  document.body.classList.add("dark");
+}
+</script>
+
+<script>
+function toggleDark() {
+  document.body.classList.toggle("dark");
+
+  let icon = document.getElementById("darkIcon");
+
+  if (document.body.classList.contains("dark")) {
+    localStorage.setItem("mode", "dark");
+    icon.innerHTML = "☀️";
+  } else {
+    localStorage.setItem("mode", "light");
+    icon.innerHTML = "🌙";
+  }
+}
+
+if (localStorage.getItem("mode") === "dark") {
+  document.body.classList.add("dark");
+  document.getElementById("darkIcon").innerHTML = "☀️";
+}
+</script>
 </body>
 </html>
