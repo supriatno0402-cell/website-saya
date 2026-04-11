@@ -13,54 +13,48 @@
 <!-- NAVBAR -->
 <div class="navbar">
   <h2>Website Saya</h2>
-  <div class="menu">
-<button onclick="toggleDark()" id="darkIcon">🌙</button>
+  
+  <div class="menu" id="menu">
+  <button onclick="toggleDark()" id="darkIcon">🌙</button>
     <a href="index.html">Home</a>
     <a href="profil.html">Profil</a>
     <a href="kontak.html">Kontak</a>
-    
   </div>
+  <div id="overlay" onclick="toggleMenu()"></div>
+<div class="hamburger" onclick="toggleMenu()" id="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+  
+  
+</div>
 </div>
 
 <!-- HOME -->
+.<section class="about">
+  
 <div class="home">
   <h1>Selamat Datang</h1>
   <p>Halo, saya Supriatno.</p>
   <p>Saya sedang belajar web development.</p>
   <p>Ini adalah website pertama saya 🚀</p>
 
-  <a href="profil.html" class="btn">Lihat Profil Saya</a>
+ <a href="profil.html" class="btn">Lihat Profil Saya</a>
 </div>
+</section>
 
 <footer>
   <p>© 2026 Supriatno</p>
 
   <div class="social">
-<a href="https://wa.me/6287742995239?text=Halo%20saya%20lihat%20website%20anda" target="_blank" class="wa-float">
-  💬
   <a href="https://facebook.com/Supriatno">Facebook</a>
   <a href="https://instagram.com/supriatno.14">Instagram</a>
   </div>
+  <a href="https://wa.me/6287742995239?text=Halo%20saya%20lihat%20website%20anda" target="_blank" class="wa-float">
+  💬</a>
   
 </footer>
 
-<script>
-function toggleDark() {
-  document.body.classList.toggle("dark");
-
-  // simpan ke localStorage
-  if (document.body.classList.contains("dark")) {
-    localStorage.setItem("mode", "dark");
-  } else {
-    localStorage.setItem("mode", "light");
-  }
-}
-
-// cek saat pertama dibuka
-if (localStorage.getItem("mode") === "dark") {
-  document.body.classList.add("dark");
-}
-</script>
 
 <script>
 function toggleDark() {
@@ -80,6 +74,14 @@ function toggleDark() {
 if (localStorage.getItem("mode") === "dark") {
   document.body.classList.add("dark");
   document.getElementById("darkIcon").innerHTML = "☀️";
+}
+</script>
+
+<script>
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("show");
+  document.getElementById("hamburger").classList.toggle("active");
+  document.getElementById("overlay").classList.toggle("show");
 }
 </script>
 </body>

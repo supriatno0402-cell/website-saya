@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kontak</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2">
 
 </head>
 
@@ -14,15 +14,21 @@
 <!-- NAVBAR -->
 <div class="navbar">
   <h2>Website Saya</h2>
-  <div class="menu">
-  
-  <button onclick="toggleDark()" id="darkIcon">🌙</button>
+  <div class="menu" id="menu">
+<button onclick="toggleDark()" id="darkIcon">🌙</button>
     <a href="index.html">Home</a>
     <a href="profil.html">Profil</a>
     <a href="kontak.html">Kontak</a>
   </div>
+  <div id="overlay" onclick="toggleMenu()"></div>
+<div class="hamburger" onclick="toggleMenu()" id="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+  
+  
 </div>
-
+</div>
 <!-- FORM -->
 <div class="contact-container">
   <h1>Kontak Saya</h1>
@@ -103,6 +109,14 @@ function toggleDark() {
 if (localStorage.getItem("mode") === "dark") {
   document.body.classList.add("dark");
   document.getElementById("darkIcon").innerHTML = "☀️";
+}
+</script>
+
+<script>
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("show");
+  document.getElementById("hamburger").classList.toggle("active");
+  document.getElementById("overlay").classList.toggle("show");
 }
 </script>
 </body>
