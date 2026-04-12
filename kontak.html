@@ -1,123 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kontak</title>
 
-<link rel="stylesheet" href="style.css?v=2">
-
+<link rel="stylesheet" href="style.css?v=3">
 </head>
 
 <body>
-
+<div class="parallax-bg" id="parallax"></div>
+<div id="loader">
+  <div class="loader-content">
+    <h1 class="logo">Supriatno</h1>
+    <div class="line"></div>
+    <p>Loading website...</p>
+  </div>
+</div>
 <!-- NAVBAR -->
 <div class="navbar">
   <h2>Website Saya</h2>
+
   <div class="menu" id="menu">
-<button onclick="toggleDark()" id="darkIcon">🌙</button>
-    <a href="index.html">Home</a>
-    <a href="profil.html">Profil</a>
-    <a href="kontak.html">Kontak</a>
+    <button onclick="toggleDark()" id="darkIcon">🌙</button>
+ <a href="index.html">Home</a>
+ <a href="profil.html">Profil</a>
+ <a href="kontak.html" class="active">Kontak</a>
+  <a href="project.html">Project</a>
   </div>
+
   <div id="overlay" onclick="toggleMenu()"></div>
-<div class="hamburger" onclick="toggleMenu()" id="hamburger">
-  <span></span>
-  <span></span>
-  <span></span>
-  
-  
+
+  <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </div>
-</div>
+
 <!-- FORM -->
-<div class="contact-container">
+<div class="contact-container hidden">
   <h1>Kontak Saya</h1>
-  
-<form action="https://formspree.io/f/mgopjzrq" method="POST">
-  <input type="text" name="nama" placeholder="Nama" required>
-  <input type="email" name="email" placeholder="Email" required>
-  <textarea name="pesan" placeholder="Pesan" rows="5" required></textarea>
-  <button type="submit">Kirim</button>
-  
-  <input type="hidden" name="_next" value="https://yourusername.github.io/thanks.html">
-</form>
 
+  <form action="https://formspree.io/f/mgopjzrq" method="POST">
+    <input type="text" name="nama" placeholder="Nama" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <textarea name="pesan" placeholder="Pesan" rows="5" required></textarea>
+
+    <button type="submit">Kirim</button>
+
+    <!-- redirect setelah kirim -->
+    <input type="hidden" name="_next" value="https://yourusername.github.io/thanks.html">
+  </form>
 </div>
 
-<script>
-function kirimWA() {
-  var nama = document.getElementById("nama").value;
-  var email = document.getElementById("email").value;
-  var pesan = document.getElementById("pesan").value;
-
-  var nomor = "6287742995239"; // ganti dengan nomor kamu
-
-  var text = "Halo, saya " + nama + "%0AEmail: " + email + "%0APesan: " + pesan;
-
-  var url = "https://wa.me/" + nomor + "?text=" + text;
-
-  window.open(url, "_blank");
-}
-</script>
-
+<!-- FOOTER -->
 <footer>
   <p>© 2026 Supriatno</p>
 
-<div class="social">
-<a href="https://wa.me/6287742995239?text=Halo%20saya%20lihat%20website%20anda" target="_blank" class="wa-float">
-  💬
-</a>
+  <div class="social">
     <a href="https://facebook.com/Supriatno">Facebook</a>
     <a href="https://instagram.com/supriatno.14">Instagram</a>
-    
-    </div>
+  </div>
 
+  <a href="https://wa.me/6287742995239?text=Halo%20saya%20lihat%20website%20anda" target="_blank" class="wa-float">
+    💬
+  </a>
 </footer>
-<script>
-function toggleDark() {
-  document.body.classList.toggle("dark");
 
-  // simpan ke localStorage
-  if (document.body.classList.contains("dark")) {
-    localStorage.setItem("mode", "dark");
-  } else {
-    localStorage.setItem("mode", "light");
-  }
-}
+<!-- MENU -->
+<script src="script.js"></script>
 
-// cek saat pertama dibuka
-if (localStorage.getItem("mode") === "dark") {
-  document.body.classList.add("dark");
-}
-</script>
 
-<script>
-function toggleDark() {
-  document.body.classList.toggle("dark");
-
-  let icon = document.getElementById("darkIcon");
-
-  if (document.body.classList.contains("dark")) {
-    localStorage.setItem("mode", "dark");
-    icon.innerHTML = "☀️";
-  } else {
-    localStorage.setItem("mode", "light");
-    icon.innerHTML = "🌙";
-  }
-}
-
-if (localStorage.getItem("mode") === "dark") {
-  document.body.classList.add("dark");
-  document.getElementById("darkIcon").innerHTML = "☀️";
-}
-</script>
-
-<script>
-function toggleMenu() {
-  document.getElementById("menu").classList.toggle("show");
-  document.getElementById("hamburger").classList.toggle("active");
-  document.getElementById("overlay").classList.toggle("show");
-}
-</script>
 </body>
 </html>

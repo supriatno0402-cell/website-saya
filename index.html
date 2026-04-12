@@ -1,88 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Home</title>
-<link rel="stylesheet" type="text/css" href="style.css">
 
+<link rel="stylesheet" href="style.css?v=3">
 </head>
 
 <body>
+<div class="parallax-bg" id="parallax"></div>
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-content">
+    <h1 class="logo">Supriatno</h1>
+    <div class="line"></div>
+    <p>Loading website...</p>
+  </div>
+</div>
 
 <!-- NAVBAR -->
 <div class="navbar">
   <h2>Website Saya</h2>
-  
+
   <div class="menu" id="menu">
-  <button onclick="toggleDark()" id="darkIcon">🌙</button>
-    <a href="index.html">Home</a>
-    <a href="profil.html">Profil</a>
-    <a href="kontak.html">Kontak</a>
+    <button onclick="toggleDark()" id="darkIcon">🌙</button>
+  <a href="index.html" class="active">Home</a>
+  <a href="profil.html">Profil</a>
+  <a href="kontak.html">Kontak</a>
+  <a href="project.html">Project</a>
   </div>
+
   <div id="overlay" onclick="toggleMenu()"></div>
-<div class="hamburger" onclick="toggleMenu()" id="hamburger">
-  <span></span>
-  <span></span>
-  <span></span>
-  
-  
-</div>
+
+  <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </div>
 
 <!-- HOME -->
-.<section class="about">
-  
 <div class="home">
-  <h1>Selamat Datang</h1>
-  <p>Halo, saya Supriatno.</p>
-  <p>Saya sedang belajar web development.</p>
-  <p>Ini adalah website pertama saya 🚀</p>
+  <h1 class="fade">Selamat Datang</h1>
+  <p class="fade">Halo, saya Supriatno.</p>
+  <p class="fade">Saya sedang belajar web development.</p>
+  <p class="fade">Ini adalah website pertama saya 🚀</p>
 
- <a href="profil.html" class="btn">Lihat Profil Saya</a>
+  <a href="profil.html" class="btn fade">Lihat Profil Saya</a>
 </div>
-</section>
 
+<!-- FOOTER -->
 <footer>
   <p>© 2026 Supriatno</p>
 
   <div class="social">
-  <a href="https://facebook.com/Supriatno">Facebook</a>
-  <a href="https://instagram.com/supriatno.14">Instagram</a>
+    <a href="https://facebook.com/Supriatno">Facebook</a>
+    <a href="https://instagram.com/supriatno.14">Instagram</a>
   </div>
+
   <a href="https://wa.me/6287742995239?text=Halo%20saya%20lihat%20website%20anda" target="_blank" class="wa-float">
-  💬</a>
-  
+    💬
+  </a>
 </footer>
 
+<!-- SCRIPT -->
+<script src="script.js"></script>
 
-<script>
-function toggleDark() {
-  document.body.classList.toggle("dark");
-
-  let icon = document.getElementById("darkIcon");
-
-  if (document.body.classList.contains("dark")) {
-    localStorage.setItem("mode", "dark");
-    icon.innerHTML = "☀️";
-  } else {
-    localStorage.setItem("mode", "light");
-    icon.innerHTML = "🌙";
-  }
-}
-
-if (localStorage.getItem("mode") === "dark") {
-  document.body.classList.add("dark");
-  document.getElementById("darkIcon").innerHTML = "☀️";
-}
-</script>
-
-<script>
-function toggleMenu() {
-  document.getElementById("menu").classList.toggle("show");
-  document.getElementById("hamburger").classList.toggle("active");
-  document.getElementById("overlay").classList.toggle("show");
-}
-</script>
 </body>
 </html>
