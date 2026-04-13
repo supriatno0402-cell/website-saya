@@ -4,7 +4,6 @@ body {
   margin: 0;
   color: white;
   overflow-x: hidden;
-
   background: linear-gradient(-45deg, #0f2027, #2c5364, #1c92d2, #6a11cb);
   background-size: 400% 400%;
   animation: gradientBG 12s ease infinite;
@@ -29,14 +28,10 @@ body::before {
   height: 120%;
   z-index: -1;
 
-  background: linear-gradient(135deg, #812abf, #a855f7);
-
   transform: translateY(0);
-}
-.parallax-bg {
   background: linear-gradient(270deg, #812abf, #a855f7, #9333ea);
   background-size: 600% 600%;
-  animation: gradientMove 10s ease infinite;
+  
 }
 
 @keyframes gradientMove {
@@ -61,6 +56,42 @@ body::before {
   opacity: 0.1;
 }
 
+/* MATIIN CURSOR ASLI */
+body {
+  cursor: none;
+}
+
+/* CURSOR UTAMA */
+.cursor {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+
+/* GLOW */
+.cursor-glow {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  background: rgba(168, 85, 247, 0.2);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  filter: blur(15px);
+}
+
+/* HOVER EFFECT */
+a:hover ~ .cursor,
+button:hover ~ .cursor {
+  transform: translate(-50%, -50%) scale(1.8);
+  background: #ec4899;
+}
 
 
 @keyframes float {
@@ -142,7 +173,7 @@ body::before {
   padding-top: 30vh;
   color: white;
   font-size: 10;
-  display: center;
+
 
 }
 
@@ -172,27 +203,24 @@ body::before {
 /* CARD */
 .card {
   background: rgba(255, 255, 255, 0.1);
-color: white;
-  backdrop-filter: blur(12px);
   border: 1px solid rgba(255,255,255,0.15);
   color: #e2e8f6;
   display: flex;
-  padding: 30px;
   border-radius: 20px;
   width: 400px;
   
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  transition: 0.5s;
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease;
+
 }
 
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  box-shadow: 0 0 30px rgba(168,85,247,0.4);
 }
-.card {
-  transform-style: preserve-3d;
-  transition: transform 0.2s ease;
-}
+
+  
 /* IMAGE */
 img {
   width: 120px;
@@ -243,6 +271,7 @@ li {
   text-decoration: none;
   color: white;
   background: #6366f1;
+  cursor: pointer;
   position: relative;
   overflow: hidden;
   transition: 0.3s;
@@ -543,17 +572,21 @@ footer {
 
 /* LEVEL SKILL */
 .html {
-  background: orange;
+  background: #f97316;
   width: 80%;
+  scroll-behavior: smooth;
+
 }
 
 .css {
+
+  background: #3b82f6;
   background: blue;
   width: 70%;
 }
 
 .js {
-  background: yellow;
+  background: #eab308; 
   width: 50%;
 }
 
@@ -663,10 +696,7 @@ footer {
 
 /* ========================= */
 /* DESKTOP */
-/* ========================= */
-.menu {
-  display: flex;
-}
+/*
 
 /* ========================= */
 /* MOBILE */
@@ -906,14 +936,33 @@ button:active {
   overflow: hidden; /* penting biar ripple tidak keluar */
 }
 
+
+
+
+/* RIPPLE GLOBAL */
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
 /* elemen ripple */
+
+
+/* animasi */
+@keyframes rippleAnim {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* RIPPLE EFFECT */
 .ripple {
   position: absolute;
   border-radius: 50%;
   transform: scale(0);
-  background: rgba(255, 255, 255, 0.5);
-  animation: rippleAnim 0.6s linear;
   pointer-events: none;
+  animation: rippleAnim 10s ease-out;
 }
 
 @keyframes rippleAnim {
@@ -923,6 +972,93 @@ button:active {
   }
 }
 
-.ripple {
-  background: radial-gradient(circle, #a855f7 20%, transparent 70%);
+/* biar efek gak keluar area */
+button, .btn, .menu a {
+  position: relative;
+  overflow: hidden;
+}
+
+/* BACKGROUND BINTANG */
+.stars, .stars2, .stars3 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-repeat: repeat;
+}
+
+/* layer 1 (bintang kecil) */
+.stars {
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: moveStars 100s linear infinite;
+  opacity: 0.5;
+}
+
+/* layer 2 (lebih besar & lebih cepat) */
+.stars2 {
+  background-image: radial-gradient(white 2px, transparent 2px);
+  background-size: 100px 100px;
+  animation: moveStars 60s linear infinite;
+  opacity: 0.4;
+}
+
+/* layer 3 (jarang tapi glow) */
+.stars3 {
+  background-image: radial-gradient(#a855f7 2px, transparent 2px);
+  background-size: 150px 150px;
+  animation: moveStars 120s linear infinite;
+  opacity: 0.3;
+}
+
+/* animasi gerak */
+@keyframes moveStars {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-2000px);
+  }
+}
+
+.stars, .stars2, .stars3 {
+  animation: moveStars 100s linear infinite, twinkle 5s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+/* ========================= */
+/* 3D TEXT */
+/* ========================= */
+
+#typing {
+  font-size: 40px;
+  font-weight: bold;
+  color: #fff;
+  animation: floatText 3s ease-in-out infinite;
+  /* efek 3D shadow */
+  text-shadow:
+    1px 1px 0 #a855f7,
+    2px 2px 0 #9333ea,
+    3px 3px 10px rgba(168,85,247,0.5);
+
+  transition: transform 0.1s ease, text-shadow 0.1s ease;
+}
+
+/* glow nyala */
+#typing.glow {
+  text-shadow:
+    0 0 10px #a855f7,
+    0 0 20px #9333ea,
+    0 0 40px #ec4899;
+}
+
+@keyframes floatText {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }

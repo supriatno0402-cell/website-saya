@@ -1,34 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Profil</title>
 
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
+
+<!-- BACKGROUND -->
+<div class="stars"></div>
+<div class="stars2"></div>
+<div class="stars3"></div>
 <div class="parallax-bg" id="parallax"></div>
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-content">
-    <h1 class="logo">Supriatno</h1>
-    <div class="line"></div>
-    <p>Loading website...</p>
-  </div>
-</div>
+
+<!-- CURSOR -->
+<div class="cursor"></div>
+<div class="cursor-glow"></div>
+
+<!-- PAGE TRANSITION -->
+<div id="page-transition"></div>
+
 <!-- NAVBAR -->
 <div class="navbar">
   <h2>Website Saya</h2>
 
   <div class="menu" id="menu">
     <button onclick="toggleDark()" id="darkIcon">🌙</button>
-<a href="index.html">Home</a>
-<a href="profil.html" class="active">Profil</a>
-<a href="kontak.html">Kontak</a>
-<a href="project.html">Project</a>
+    <a href="index.html">Home</a>
+    <a href="profil.html" class="active">Profil</a>
+    <a href="kontak.html">Kontak</a>
+    <a href="project.html">Project</a>
   </div>
 
   <div class="hamburger" onclick="toggleMenu()" id="hamburger">
@@ -44,13 +48,12 @@
 <!-- JUDUL -->
 <h1 style="text-align:center; color:white;">Profil Saya</h1>
 
-<!-- PROFILE SECTION -->
+<!-- PROFILE -->
 <section class="profile-section">
 
   <!-- ABOUT -->
   <div class="about hidden">
     <img src="foto-saya.jpg" alt="Foto saya">
-
     <h2>Supriatno</h2>
 
     <p>
@@ -100,10 +103,9 @@
 
 </section>
 
-<!-- CARD SECTION -->
+<!-- CARD -->
 <div class="container">
 
-  <!-- PENDIDIKAN -->
   <div class="card hidden">
     <img src="foto-saya.jpg">
     <div class="text">
@@ -117,7 +119,6 @@
     </div>
   </div>
 
-  <!-- PEKERJAAN -->
   <div class="card hidden">
     <img src="img2.png">
     <div class="text">
@@ -131,7 +132,6 @@
     </div>
   </div>
 
-  <!-- HOBI -->
   <div class="card hidden">
     <img src="1.png">
     <div class="text">
@@ -163,8 +163,10 @@
   </a>
 </footer>
 
-<!-- JS -->
+<!-- AUDIO -->
+<audio id="clickSound" src="https://assets.mixkit.co/sfx/preview/mixkit-modern-technology-select-3124.mp3"></audio>
 
+<!-- SCRIPT -->
 <script src="script.js"></script>
 
 </body>

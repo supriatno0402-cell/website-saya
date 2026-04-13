@@ -9,24 +9,30 @@
 </head>
 
 <body>
+
+<!-- BACKGROUND -->
+<div class="stars"></div>
+<div class="stars2"></div>
+<div class="stars3"></div>
 <div class="parallax-bg" id="parallax"></div>
-<div id="loader">
-  <div class="loader-content">
-    <h1 class="logo">Supriatno</h1>
-    <div class="line"></div>
-    <p>Loading website...</p>
-  </div>
-</div>
+
+<!-- CURSOR -->
+<div class="cursor"></div>
+<div class="cursor-glow"></div>
+
+<!-- PAGE TRANSITION -->
+<div id="page-transition"></div>
+
 <!-- NAVBAR -->
 <div class="navbar">
   <h2>Website Saya</h2>
 
   <div class="menu" id="menu">
     <button onclick="toggleDark()" id="darkIcon">🌙</button>
- <a href="index.html">Home</a>
- <a href="profil.html">Profil</a>
- <a href="kontak.html" class="active">Kontak</a>
-  <a href="project.html">Project</a>
+    <a href="index.html">Home</a>
+    <a href="profil.html">Profil</a>
+    <a href="kontak.html" class="active">Kontak</a>
+    <a href="project.html">Project</a>
   </div>
 
   <div id="overlay" onclick="toggleMenu()"></div>
@@ -49,7 +55,6 @@
 
     <button type="submit">Kirim</button>
 
-    <!-- redirect setelah kirim -->
     <input type="hidden" name="_next" value="https://yourusername.github.io/thanks.html">
   </form>
 </div>
@@ -68,9 +73,11 @@
   </a>
 </footer>
 
-<!-- MENU -->
-<script src="script.js"></script>
+<!-- AUDIO -->
+<audio id="clickSound" src="https://assets.mixkit.co/sfx/preview/mixkit-modern-technology-select-3124.mp3"></audio>
 
+<!-- SCRIPT -->
+<script src="script.js"></script>
 
 </body>
 </html>

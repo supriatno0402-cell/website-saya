@@ -33,11 +33,6 @@ function toggleDark() {
 // =======================
 document.addEventListener("DOMContentLoaded", function() {
 
-  // DARK MODE LOAD
-  if (localStorage.getItem("mode") === "dark") {
-    document.body.classList.add("dark");
-    document.getElementById("darkIcon").innerHTML = "☀️";
-  }
 
   // LOADER FIX (ANTI STUCK)
   const loader = document.getElementById("loader");
@@ -179,3 +174,123 @@ window.addEventListener("scroll", function() {
     bg.style.transform = "translateY(" + window.scrollY * 0.3 + "px)";
   }
 });
+
+
+
+window.addEventListener("load", () => {
+  const loader = document.getElementById("loader");
+
+  setTimeout(() => {
+    loader.style.opacity = "0";
+    loader.style.transform = "scale(1.1)";
+    loader.style.transition = "0.6s";
+
+    setTimeout(() => {
+      loader.style.display = "none";
+    }, 600);
+  }, 1200);
+});
+
+
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("mousemove", (e) => {
+    let x = e.offsetX;
+    let y = e.offsetY;
+    let rotateX = (y / card.offsetHeight - 0.5) * 10;
+    let rotateY = (x / card.offsetWidth - 0.5) * -10;
+
+    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "rotateX(0) rotateY(0)";
+  });
+});
+
+
+
+// ambil semua elemen yang mau dikasih ripple
+const rippleTargets = document.querySelectorAll(".btn, .menu a, .card");
+
+rippleTargets.forEach(el => {
+  el.classList.add("ripple-effect");
+
+  el.addEventListener("click", function(e) {
+    const circle = document.createElement("span");
+    circle.classList.add("ripple-span");
+
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+
+    circle.style.width = circle.style.height = size + "px";
+    circle.style.left = (e.clientX - rect.left - size / 2) + "px";
+    circle.style.top = (e.clientY - rect.top - size / 2) + "px";
+
+    this.appendChild(circle);
+
+    setTimeout(() => {
+      circle.remove();
+    }, 600);
+  });
+});
+
+
+
+// target semua yang bisa diklik
+
+const clickSound = document.getElementById("clickSound");
+
+document.querySelectorAll("button, .btn, .menu a").forEach(el => {
+  el.addEventListener("click", function(e) {
+
+    // PLAY SOUND
+    clickSound.currentTime = 0;
+    clickSound.play();
+
+    // RIPPLE
+    const ripple = document.createElement("span");
+    ripple.classList.add("ripple");
+
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+
+    ripple.style.width = ripple.style.height = size + "px";
+    ripple.style.left = e.clientX - rect.left - size / 2 + "px";
+    ripple.style.top = e.clientY - rect.top - size / 2 + "px";
+
+    this.appendChild(ripple);
+
+    setTimeout(() => {
+      ripple.remove();
+    }, 600);
+  });
+});
+if (navigator.vibrate) {
+  navigator.vibrate(30);
+}
+
+// =======================
+// 3D TEXT EFFECT
+// =======================
+const text3D = document.getElementById("typing");
+
+if (text3D) {
+
+  document.addEventListener("mousemove", (e) => {
+    let x = (window.innerWidth / 2 - e.clientX) / 25;
+    let y = (window.innerHeight / 2 - e.clientY) / 25;
+
+    text3D.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
+  });
+
+  // glow saat hover
+  text3D.addEventListener("mouseenter", () => {
+    text3D.classList.add("glow");
+  });
+
+  text3D.addEventListener("mouseleave", () => {
+    text3D.classList.remove("glow");
+    text3D.style.transform = "rotateX(0) rotateY(0)";
+  });
+
+}
