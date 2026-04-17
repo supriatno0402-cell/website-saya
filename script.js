@@ -1,5 +1,4 @@
 
-
 // =======================
 // HAMBURGER MENU
 // =======================
@@ -26,13 +25,10 @@ function toggleDark() {
     icon.innerHTML = "🌙";
   }
 }
-
-
 // =======================
 // SAAT HALAMAN DIBUKA
 // =======================
 document.addEventListener("DOMContentLoaded", function() {
-
 
   // LOADER FIX (ANTI STUCK)
   const loader = document.getElementById("loader");
@@ -94,7 +90,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
-
 // =======================
 // ANIMASI SCROLL
 // =======================
@@ -110,7 +105,6 @@ document.querySelectorAll(".hidden").forEach(el => {
   observer.observe(el);
 });
 
-
 // =======================
 // NAVBAR HIDE + SCROLL EFFECT
 // =======================
@@ -121,14 +115,10 @@ window.addEventListener("scroll", function() {
   let navbar = document.querySelector(".navbar");
 
   // hide saat scroll bawah
-  if (currentScroll > lastScroll) {
-    navbar.classList.add("hide");
-  } else {
-    navbar.classList.remove("hide");
-  }
+  
 
   // efek background scroll
-  if (currentScroll > 50) {
+  if (currentScroll > 20) {
     navbar.classList.add("scrolled");
   } else {
     navbar.classList.remove("scrolled");
@@ -164,7 +154,6 @@ cards.forEach(card => {
   });
 });
 
-
 // =======================
 // PARALLAX
 // =======================
@@ -174,8 +163,6 @@ window.addEventListener("scroll", function() {
     bg.style.transform = "translateY(" + window.scrollY * 0.3 + "px)";
   }
 });
-
-
 
 window.addEventListener("load", () => {
   const loader = document.getElementById("loader");
@@ -208,7 +195,6 @@ document.querySelectorAll(".card").forEach(card => {
 });
 
 
-
 // ambil semua elemen yang mau dikasih ripple
 const rippleTargets = document.querySelectorAll(".btn, .menu a, .card");
 
@@ -233,7 +219,6 @@ rippleTargets.forEach(el => {
     }, 600);
   });
 });
-
 
 
 // target semua yang bisa diklik
@@ -276,12 +261,21 @@ const text3D = document.getElementById("typing");
 
 if (text3D) {
 
-  document.addEventListener("mousemove", (e) => {
-    let x = (window.innerWidth / 2 - e.clientX) / 25;
-    let y = (window.innerHeight / 2 - e.clientY) / 25;
+  let ticking = false;
 
-    text3D.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
-  });
+document.addEventListener("mousemove", (e) => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      let x = (window.innerWidth / 2 - e.clientX) / 25;
+      let y = (window.innerHeight / 2 - e.clientY) / 25;
+
+      text3D.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
+      ticking = false;
+    });
+
+    ticking = true;
+  }
+});
 
   // glow saat hover
   text3D.addEventListener("mouseenter", () => {
@@ -397,10 +391,3 @@ if (form) {
   });
 }
 
-if (clickSound) {
-  clickSound.currentTime = 0;
-  clickSound.play();
-}
-if (navigator.vibrate) {
-  navigator.vibrate([50, 50, 50]);
-}
