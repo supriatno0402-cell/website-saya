@@ -347,45 +347,26 @@ window.addEventListener("scroll", () => {
 });
 
 const form = document.querySelector("form");
-const popup = document.getElementById("successPopup");
 
 if (form) {
   form.addEventListener("submit", async function(e) {
     e.preventDefault();
 
-    const btn = form.querySelector("button");
-    btn.innerHTML = "Mengirim...";
-    btn.disabled = true;
+    const data = new FormData(form);
 
-    try {
-      const data = new FormData(form);
-
-      const response = await fetch(form.action, {
-        method: "POST",
-        body: data,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        // tampilkan popup sukses
-        if (popup) popup.classList.add("show");
-
-        form.reset();
-      } else {
-        alert("Gagal mengirim!");
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: data,
+      headers: {
+        'Accept': 'application/json'
       }
+    });
 
-    } catch (error) {
-      alert("Terjadi error!");
+    if (response.ok) {
+      alert("Pesan berhasil dikirim!");
+      form.reset();
+    } else {
+      alert("Gagal kirim!");
     }
-
-    btn.innerHTML = "Kirim";
-    btn.disabled = false;
-
-    setTimeout(() => {
-      if (popup) popup.classList.remove("show");
-    }, 3000);
   });
 }
