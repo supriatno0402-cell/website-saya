@@ -294,3 +294,113 @@ if (text3D) {
   });
 
 }
+
+// =======================
+// CARD CLICK ZOOM
+// =======================
+
+
+
+// POPUP SUPER FIX (ANTI BENTROK)
+// =======================
+document.addEventListener("click", function(e) {
+
+  const card = e.target.closest(".card");
+  if (!card) return;
+
+  const popupOverlay = document.getElementById("popupOverlay");
+  const popupTitle = document.getElementById("popupTitle");
+  const popupDesc = document.getElementById("popupDesc");
+  const popupImg = document.getElementById("popupImg");
+  const popupList = document.getElementById("popupList");
+
+  // DEBUG
+  console.log("CARD KEKLIK:", card.dataset);
+
+  // ISI DATA
+  popupTitle.innerText = card.dataset.title || "";
+  popupDesc.innerText = card.dataset.desc || "";
+  popupImg.src = card.dataset.img || "";
+
+  popupList.innerHTML = "";
+  if (card.dataset.list) {
+    card.dataset.list.split(",").forEach(item => {
+      const li = document.createElement("li");
+      li.innerText = item;
+      popupList.appendChild(li);
+    });
+  }
+
+  // TAMPILKAN
+  popupOverlay.classList.add("show");
+});
+
+document.getElementById("popupClose").onclick = () => {
+  document.getElementById("popupOverlay").classList.remove("show");
+};
+
+document.getElementById("popupOverlay").onclick = (e) => {
+  if (e.target.id === "popupOverlay") {
+    e.target.classList.remove("show");
+  }
+};
+
+window.addEventListener("scroll", () => {
+  const bg = document.getElementById("parallax");
+  if (bg) {
+    bg.style.transform = `translateY(${window.scrollY * 0.2}px)`;
+  }
+});
+
+const form = document.querySelector("form");
+const popup = document.getElementById("successPopup");
+
+if (form) {
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const btn = form.querySelector("button");
+
+    // loading
+    btn.innerHTML = "Mengirim...";
+    btn.disabled = true;
+
+    try {
+      const data = new FormData(form);
+
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        popup.classList.add("show");
+        form.reset();
+      } else {
+        alert("Gagal mengirim, coba lagi!");
+      }
+
+    } catch (error) {
+      alert("Terjadi error!");
+    }
+
+    // reset tombol
+    btn.innerHTML = "Kirim";
+    btn.disabled = false;
+
+    setTimeout(() => {
+      popup.classList.remove("show");
+    }, 3000);
+  });
+}
+
+if (clickSound) {
+  clickSound.currentTime = 0;
+  clickSound.play();
+}
+if (navigator.vibrate) {
+  navigator.vibrate([50, 50, 50]);
+}

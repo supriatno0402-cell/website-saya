@@ -9,7 +9,18 @@
 </head>
 
 <body>
+  <!-- POPUP -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup">
+    <span class="popup-close" id="popupClose">✖</span>
 
+    <img id="popupImg" style="width:100%; border-radius:10px; margin-bottom:15px;">
+    <h2 id="popupTitle"></h2>
+    <p id="popupDesc"></p>
+
+    <ul id="popupList"></ul>
+  </div>
+</div>
 <!-- BACKGROUND -->
 <div class="stars"></div>
 <div class="stars2"></div>
@@ -49,11 +60,17 @@
 
 <!-- CONTENT -->
 <div class="container">
+  <div class="card hidden"
+       data-title="website portofolio"
+       data-desc="Website pertama saya menggunakan : "
+       data-img="foto-saya.jpg"
+       data-list="HTML,CSS, Java Script">
 
-  <div class="card hidden">
+    <img src="foto-saya.jpg">
+
     <div class="text">
-      <h2>Website Portfolio</h2>
-      <p>Website pertama saya menggunakan HTML, CSS, dan JavaScript.</p>
+      <h2>Website Portofolio</h2>
+      <p>Klik untuk lihat detail</p>
     </div>
   </div>
 

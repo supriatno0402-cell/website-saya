@@ -9,6 +9,17 @@
 </head>
 
 <body>
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup">
+    <span class="popup-close" id="popupClose">✖</span>
+
+    <img id="popupImg" style="width:100%; border-radius:10px; margin-bottom:15px;">
+    <h2 id="popupTitle"></h2>
+    <p id="popupDesc"></p>
+
+    <ul id="popupList"></ul>
+  </div>
+</div>
 
 <!-- BACKGROUND -->
 <div class="stars"></div>
@@ -49,13 +60,27 @@
   <h1>Kontak Saya</h1>
 
   <form action="https://formspree.io/f/mgopjzrq" method="POST">
-    <input type="text" name="nama" placeholder="Nama" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <textarea name="pesan" placeholder="Pesan" rows="5" required></textarea>
+
+    <div class="input-group">
+      <input type="text" name="nama" required>
+      <label>Nama</label>
+      <span class="line"></span>
+    </div>
+
+    <div class="input-group">
+      <input type="email" name="email" required>
+      <label>Email</label>
+      <span class="line"></span>
+    </div>
+
+    <div class="input-group">
+      <textarea name="pesan" rows="4" required></textarea>
+      <label>Pesan</label>
+      <span class="line"></span>
+    </div>
 
     <button type="submit">Kirim</button>
 
-    <input type="hidden" name="_next" value="https://yourusername.github.io/thanks.html">
   </form>
 </div>
 
@@ -78,6 +103,14 @@
 
 <!-- SCRIPT -->
 <script src="script.js"></script>
+
+<div class="success-popup" id="successPopup">
+  <div class="success-box">
+    <div class="checkmark">✔</div>
+    <h2>Pesan Terkirim!</h2>
+    <p>Terima kasih, saya akan segera membalas 😊</p>
+  </div>
+</div>
 
 </body>
 </html>

@@ -9,6 +9,19 @@
 </head>
 
 <body>
+  
+<!-- POPUP -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup">
+    <span class="popup-close" id="popupClose">✖</span>
+
+    <img id="popupImg" style="width:100%; border-radius:10px; margin-bottom:15px;">
+    <h2 id="popupTitle"></h2>
+    <p id="popupDesc"></p>
+
+    <ul id="popupList"></ul>
+  </div>
+</div>
 
 <!-- BACKGROUND -->
 <div class="stars"></div>
@@ -52,6 +65,8 @@
 <section class="profile-section">
 
   <!-- ABOUT -->
+  
+  
   <div class="about hidden">
     <img src="foto-saya.jpg" alt="Foto saya">
     <h2>Supriatno</h2>
@@ -68,6 +83,7 @@
   </div>
 
   <!-- SKILLS -->
+  
   <div class="skills hidden">
     <h2>Skill Saya</h2>
 
@@ -103,51 +119,53 @@
 
 </section>
 
-<!-- CARD -->
+
+  <!-- CARD 1 -->
 <div class="container">
+  <div class="card hidden"
+       data-title="Riwayat Pendidikan"
+       data-desc="SD, SMP, SMK"
+       data-img="foto-saya.jpg"
+       data-list="SD,SMP,SMK">
 
-  <div class="card hidden">
     <img src="foto-saya.jpg">
+
     <div class="text">
-      <h2>Supriatno</h2>
-      <p>Riwayat Pendidikan</p>
-      <ul>
-        <li>SD</li>
-        <li>SMP</li>
-        <li>SMK</li>
-      </ul>
+      <h2>Riwayat Pendidikan</h2>
+      <p>Klik untuk lihat detail</p>
     </div>
   </div>
 
-  <div class="card hidden">
+  <div class="card hidden"
+       data-title="Riwayat Pekerjaan"
+       data-desc="Counter (2011–2012),PT Pison (2013–2018),PT SUAI (2018–Sekarang)"
+       data-img="img2.png"
+       data-list="SD,SMP,SMK">
+
     <img src="img2.png">
+
     <div class="text">
-      <h2>Supriatno</h2>
-      <p>Riwayat Pekerjaan</p>
-      <ul>
-        <li>Counter (2011–2012)</li>
-        <li>PT Pison (2013–2018)</li>
-        <li>PT SUAI (2018–Sekarang)</li>
-      </ul>
+      <h2>Riwayat Pekerjaan</h2>
+      <p>Klik untuk lihat detail</p>
     </div>
   </div>
+  
+   <div class="card hidden"
+       data-title="Hobi"
+       data-desc="Bola,gym,komputer,belajar elektronika,smps,dan web development"
+       data-img="1.png"
+       data-list="SD,SMP,SMK">
 
-  <div class="card hidden">
     <img src="1.png">
+
     <div class="text">
-      <h2>Supriatno</h2>
-      <p>Hobi</p>
-      <ul>
-        <li>Bermain bola</li>
-        <li>Gym</li>
-        <li>Komputer</li>
-        <li>Belajar elektronika</li>
-        <li>Belajar web development</li>
-      </ul>
+      <h2>Hobi</h2>
+      <p>Klik untuk lihat detail</p>
     </div>
   </div>
-
+  
 </div>
+
 
 <!-- FOOTER -->
 <footer>
@@ -169,5 +187,6 @@
 <!-- SCRIPT -->
 <script src="script.js"></script>
 
+<div class="card-overlay" id="cardOverlay"></div>
 </body>
 </html>
