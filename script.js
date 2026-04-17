@@ -349,3 +349,27 @@ window.addEventListener("scroll", () => {
 const form = document.querySelector("form");
 const popup = document.getElementById("successPopup");
 
+const form = document.querySelector("form");
+
+if (form) {
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const data = new FormData(form);
+
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: data,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      alert("Pesan berhasil dikirim!");
+      form.reset();
+    } else {
+      alert("Gagal kirim!");
+    }
+  });
+}
