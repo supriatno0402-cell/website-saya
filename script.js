@@ -157,10 +157,18 @@ cards.forEach(card => {
 // =======================
 // PARALLAX
 // =======================
+let ticking = false;
+
 window.addEventListener("scroll", function() {
-  const bg = document.getElementById("parallax");
-  if (bg) {
-    bg.style.transform = "translateY(" + window.scrollY * 0.3 + "px)";
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      const bg = document.getElementById("parallax");
+      if (bg) {
+        bg.style.transform = `translateY(${window.scrollY * 0.2}px)`;
+      }
+      ticking = false;
+    });
+    ticking = true;
   }
 });
 
@@ -175,7 +183,7 @@ window.addEventListener("load", () => {
     setTimeout(() => {
       loader.style.display = "none";
     }, 600);
-  }, 1200);
+  }, 500);
 });
 
 
