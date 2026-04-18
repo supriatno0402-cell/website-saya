@@ -1452,3 +1452,11 @@ button:hover {
   pointer-events: none;
 }
 
+.music-player {
+  position: fixed;
+  bottom: 80px;
+  left: 20px;
+  right: 20px;
+  z-index: 9999; /* paling atas */
+}
+
