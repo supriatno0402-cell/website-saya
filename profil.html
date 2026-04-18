@@ -8,6 +8,9 @@
 <link rel="stylesheet" href="style.css">
 </head>
 
+
+
+
 <body>
   
 <!-- POPUP -->
@@ -128,7 +131,7 @@
        data-img="foto-saya.jpg"
        data-list="SD,SMP,SMK">
 
-    <img src="foto-saya.jpg">
+    <img src="foto-saya.jpg" loading="lazy">
 
     <div class="text">
       <h2>Riwayat Pendidikan</h2>
@@ -188,5 +191,20 @@
 <script src="script.js"></script>
 
 <div class="card-overlay" id="cardOverlay"></div>
+
+<div class="music-player" id="musicPlayer">
+  <button id="playBtn">▶</button>
+
+  <div class="music-info">
+    <span>Now Playing</span>
+    <p>Musik Santai</p>
+  </div>
+
+  <input type="range" id="volume" min="0" max="1" step="0.1" value="0.5">
+
+  <audio id="music" loop>
+    <source src="lagu.mp3" type="audio/mpeg">
+  </audio>
+</div>
 </body>
 </html>
