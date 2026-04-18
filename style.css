@@ -1442,3 +1442,13 @@ button:hover {
   50% { transform: scale(1.15); }
   100% { transform: scale(1); }
 }
+
+#overlay,
+.card-overlay,
+.parallax-bg,
+.stars,
+.stars2,
+.stars3 {
+  pointer-events: none;
+}
+
