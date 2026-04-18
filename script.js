@@ -358,8 +358,3 @@ if (playBtn && music) {
 
 }
 
-document.addEventListener("click", () => {
-  if (music.paused) {
-    music.play();
-  }
-}, { once: true });
