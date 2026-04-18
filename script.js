@@ -333,28 +333,33 @@ if (form) {
   });
 }
 
-const music = document.getElementById("music");
 const playBtn = document.getElementById("playBtn");
+const music = document.getElementById("bgMusic");
 const volume = document.getElementById("volume");
-const player = document.getElementById("musicPlayer");
 
-// default volume
-music.volume = 0.5;
+if (playBtn && music) {
 
-// play / pause
-playBtn.addEventListener("click", () => {
+  playBtn.addEventListener("click", () => {
+    if (music.paused) {
+      music.play();
+      playBtn.innerText = "⏸ Pause";
+    } else {
+      music.pause();
+      playBtn.innerText = "▶ Play";
+    }
+  });
+
+  // volume control
+  if (volume) {
+    volume.addEventListener("input", () => {
+      music.volume = volume.value;
+    });
+  }
+
+}
+
+document.addEventListener("click", () => {
   if (music.paused) {
     music.play();
-    playBtn.innerHTML = "⏸";
-    player.classList.add("playing");
-  } else {
-    music.pause();
-    playBtn.innerHTML = "▶";
-    player.classList.remove("playing");
   }
-});
-
-// volume control
-volume.addEventListener("input", () => {
-  music.volume = volume.value;
-});
+}, { once: true });
