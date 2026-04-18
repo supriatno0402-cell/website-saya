@@ -352,7 +352,7 @@ if (playBtn && music) {
   // volume control
   if (volume) {
     volume.addEventListener("input", () => {
-      music.volume = volume.value;
+      music.volume = 1;
     });
   }
 
