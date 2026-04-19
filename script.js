@@ -261,9 +261,11 @@ document.addEventListener("mousemove", (e) => {
 // =======================
 document.addEventListener("click", function(e) {
 
+  // ❌ JANGAN ganggu music player
+  if (e.target.closest("#musicPlayer")) return;
+
   const card = e.target.closest(".card");
   if (!card) return;
-
   const popupOverlay = document.getElementById("popupOverlay");
   const popupTitle = document.getElementById("popupTitle");
   const popupDesc = document.getElementById("popupDesc");
@@ -286,20 +288,21 @@ document.addEventListener("click", function(e) {
       popupList.appendChild(li);
     });
   }
-
   // TAMPILKAN
   popupOverlay.classList.add("show");
 });
 
+
 document.getElementById("popupClose").onclick = () => {
   document.getElementById("popupOverlay").classList.remove("show");
-};
 
-document.getElementById("popupOverlay").onclick = (e) => {
-  if (e.target.id === "popupOverlay") {
-    e.target.classList.remove("show");
+  // munculin lagi music player
+  if (musicPlayer) {
+    musicPlayer.style.opacity = "1";
+    musicPlayer.style.pointerEvents = "auto";
   }
 };
+
 
 window.addEventListener("scroll", () => {
   const bg = document.getElementById("parallax");
@@ -357,4 +360,68 @@ if (playBtn && music) {
   }
 
 }
+const player = document.getElementById("musicPlayer");
 
+let isDragging = false;
+let offsetX, offsetY;
+
+// START DRAG
+player.addEventListener("mousedown", startDrag);
+player.addEventListener("touchstart", startDrag);
+
+function startDrag(e) {
+  isDragging = true;
+
+  const rect = player.getBoundingClientRect();
+
+  if (e.touches) {
+    offsetX = e.touches[0].clientX - rect.left;
+    offsetY = e.touches[0].clientY - rect.top;
+  } else {
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+  }
+}
+
+// DRAGGING
+document.addEventListener("mousemove", drag);
+document.addEventListener("touchmove", drag);
+
+function drag(e) {
+  if (!isDragging) return;
+
+  let x, y;
+
+  if (e.touches) {
+    x = e.touches[0].clientX;
+    y = e.touches[0].clientY;
+  } else {
+    x = e.clientX;
+    y = e.clientY;
+  }
+
+  player.style.left = (x - offsetX) + "px";
+  player.style.top = (y - offsetY) + "px";
+}
+
+// STOP DRAG
+document.addEventListener("mouseup", () => isDragging = false);
+document.addEventListener("touchend", () => isDragging = false);
+
+
+const musicPlayer = document.getElementById("musicPlayer");
+
+// saat card diklik
+document.addEventListener("click", function(e) {
+
+  if (e.target.closest("#musicPlayer")) return;
+
+  const card = e.target.closest(".card");
+  if (!card) return;
+
+  // sembunyikan music player
+  if (musicPlayer) {
+    musicPlayer.style.opacity = "0";
+    musicPlayer.style.pointerEvents = "none";
+  }
+});
