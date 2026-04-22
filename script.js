@@ -259,6 +259,8 @@ document.addEventListener("mousemove", (e) => {
 
 // POPUP SUPER FIX (ANTI BENTROK)
 // =======================
+
+
 document.addEventListener("click", function(e) {
 
   // ❌ JANGAN ganggu music player
@@ -412,16 +414,68 @@ document.addEventListener("touchend", () => isDragging = false);
 const musicPlayer = document.getElementById("musicPlayer");
 
 // saat card diklik
-document.addEventListener("click", function(e) {
+const img = document.getElementById("imgZoom");
 
-  if (e.target.closest("#musicPlayer")) return;
+if (img) {
 
-  const card = e.target.closest(".card");
-  if (!card) return;
+  let scale = 1;
+  let lastScale = 1;
 
-  // sembunyikan music player
-  if (musicPlayer) {
-    musicPlayer.style.opacity = "0";
-    musicPlayer.style.pointerEvents = "none";
+  let posX = 0;
+  let posY = 0;
+
+  let startX = 0;
+  let startY = 0;
+
+  let startDist = 0;
+  let isDragging = false;
+
+  function getDistance(touches) {
+    let dx = touches[0].clientX - touches[1].clientX;
+    let dy = touches[0].clientY - touches[1].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
   }
-});
+
+  img.addEventListener("touchstart", (e) => {
+
+    if (e.touches.length === 2) {
+      startDist = getDistance(e.touches);
+      lastScale = scale;
+    }
+
+    if (e.touches.length === 1) {
+      isDragging = true;
+      startX = e.touches[0].clientX - posX;
+      startY = e.touches[0].clientY - posY;
+    }
+
+  }, { passive: false });
+
+  img.addEventListener("touchmove", (e) => {
+
+    e.preventDefault(); // 🔥 WAJIB
+
+    // pinch
+    if (e.touches.length === 2) {
+      let newDist = getDistance(e.touches);
+      scale = lastScale * (newDist / startDist);
+
+      // batas zoom
+      scale = Math.max(1, Math.min(scale, 4));
+    }
+
+    // drag
+    if (e.touches.length === 1 && isDragging) {
+      posX = e.touches[0].clientX - startX;
+      posY = e.touches[0].clientY - startY;
+    }
+
+    img.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+
+  }, { passive: false });
+
+  img.addEventListener("touchend", () => {
+    isDragging = false;
+  });
+
+}

@@ -1493,3 +1493,46 @@ button:hover {
   }
 }
 
+#imgZoomOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+
+}
+
+#imgZoomOverlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+#imgZoomOverlay.show #imgZoom {
+  transform: scale(1);
+  cursor: zoom-out;
+}
+
+#imgZoom {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 15px;
+
+  transform: scale(1) translate(0,0);
+  transition: transform 0.1s;
+
+  touch-action: none; /* 🔥 ini penting banget */
+}
+
+#imgZoomOverlay {
+  z-index: 99999;
+}
